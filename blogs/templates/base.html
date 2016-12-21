@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>
+        {% block title %} Blog | A blog site {% endblock %}
+    </title>
+    <link href="https://cdn.bootcss.com/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="ui menu">
+        <a class="{%if isHome%}active{%endif%} item" href="/">
+            <i class="home icon"></i> Home
+        </a>
+        <a class="{%if isCategory%}active{%endif%} item" href="/category">
+            <i class="content icon"></i> Category
+        </a>
+        <div class="right menu">
+            <div class="item">
+                <div class="ui button"><a href="/create">Create</a></div>
+            </div>
+            <div class="item">
+                <div class="ui transparent icon input">
+                    <form action="/search" method="get">
+                        <input type="text" placeholder="搜索..." name="keyword">
+                        <i class="search link icon"></i>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block body %} {% endblock %}
+    <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/semantic-ui/2.2.6/semantic.min.js">
+    </script>
+    <script>
+    // $('.ui.modal')
+    //     .modal();
+    </script>
+</body>
+
+</html>
