@@ -1,3 +1,4 @@
+# _*_ coding:utf-8 _*_
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.http import HttpResponse
@@ -44,7 +45,7 @@ class CreateView(generic.CreateView):
         article = form.save(commit=False)
         article.author = self.request.user
         article.save()
-        return redirect("/")
+        return redirect("/blogs/")
 
 
 class SearchView(generic.ListView):
@@ -70,4 +71,4 @@ def edit(request):
 def delete(request):
     article=Article.objects.get(pk=request.POST['pk'])
     article.delete()
-    return redirect("/")
+    return redirect("/blogs/")

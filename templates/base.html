@@ -13,19 +13,19 @@
 
 <body>
     <div class="ui menu">
-        <a class="{%if isHome%}active{%endif%} item" href="/">
+        <a class="{%if isHome%}active{%endif%} item" href="/blogs/">
             <i class="home icon"></i> Home
         </a>
-        <a class="{%if isCategory%}active{%endif%} item" href="/category">
+        <a class="{%if isCategory%}active{%endif%} item" href="/blogs/category">
             <i class="content icon"></i> Category
         </a>
         <div class="right menu">
             <div class="item">
-                <div class="ui button"><a href="/create">Create</a></div>
+                <div class="ui button"><a href="/blogs/create">Create</a></div>
             </div>
             <div class="item">
                 <div class="ui transparent icon input">
-                    <form action="/search" method="get">
+                    <form action="/blogs/search" method="get">
                         <input type="text" placeholder="搜索..." name="keyword">
                         <i class="search link icon"></i>
                     </form>

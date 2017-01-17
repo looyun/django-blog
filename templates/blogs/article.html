@@ -3,9 +3,9 @@
     <h1>{{article.title}}</h1>
     <h4>by {{article.author}} edited on {{ article.edit_date|date:"d M" }}</h4>
     <p>{{article.content}}</p>
-    <div class="ui button">
-        <a href="{% url 'blogs:editview' article.id%}">edit</a>
-    </div>
+    <a class="ui button" href="{% url 'blogs:editview' article.id %}">
+        edit
+    </a>
     <form action="{% url 'blogs:delete' %}" method="post">
         {% csrf_token %}
         <input type="hidden" name="pk" value="{{article.id}}">
