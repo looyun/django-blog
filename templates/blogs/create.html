@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block title %}Create{% endblock %} {% block body %}
+<div class="ui text container ">
+    <form class="ui form" action="{% url 'blogs:create' %}" method="post">
+        {% csrf_token %}
+        <div class="field">
+            <input type="text" name="title" placeholder="请输入标题">
+        </div>
+        <div class="field">
+            <textarea rows="10" name="content" placeholder="请输入正文"></textarea>
+        </div>
+        <input  class="ui submit button" type="submit" value="Submit" />
+    </form>
+</div>
+{% endblock %}
