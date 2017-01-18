@@ -20,5 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^polls/', include('polls.urls', namespace="polls")),
     url(r'^blogs/', include('blogs.urls', namespace="blogs")),
-    url(r'^$', include('shorturl.urls', namespace="shorturl"))
+    url(r'^', include('shorturl.urls', namespace="shorturl"))
 ]
