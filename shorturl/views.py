@@ -22,12 +22,20 @@ class URLRedirectView(View):
         print(obj.url)
         return HttpResponseRedirect('http://'+obj.url)
 
-def create_shortcode(request):
-    url=request.POST['url']
+def create_shortcode(url):
     chars=string.ascii_letters+string.digits
     shortcode=''.join(random.choice(chars) for _ in range(6))
     if ShortURL.objects.filter(shortcode=shortcode):
         return create_shortcode(request)
     return shortcode
+
+def get_shorturl(request,**kwargs):
+    url=request.POST['url']
+    shortcode=create_shortcode(url)
+    kwargs['url']='127.0.0.1/'+shortcode
+    return render(request,'shorturl/index.html')
+    
+
+
 
 

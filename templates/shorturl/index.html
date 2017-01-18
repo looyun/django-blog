@@ -11,19 +11,25 @@
         overflow-y: scroll;
     }
     
-    .ui.inverted.teal.segment {
-        background-color: #00B5AD!important;
-        color: #FFF!important;
+    .ui.inverted.segment {
         height: inherit;
     }
     </style>
 </head>
 
 <body>
-    <div class="ui center aligned inverted teal vertical segment">
+    <div class="ui center aligned inverted vertical segment">
         <div class="ui page grid">
             <div class="column">
-                <h2 class="ui inverted header">shorturl</h2>
+                <h2 class="ui inverted header">shorten url</h2>
+                <form action="/shorten" method="post">
+                    <div class="ui labeled action input">
+                        <div class="ui label">http://</div>
+                        <input name="url" type="text" placeholder="www.example.com">
+                        <div class="ui teal button" type="submit">shorten >></div>
+                    </div>
+                </form>
+                {%if url %}{{url}}{%endif%}
             </div>
         </div>
     </div>
