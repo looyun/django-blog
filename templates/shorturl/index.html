@@ -19,18 +19,16 @@
 
 <body>
     <div class="ui center aligned inverted vertical segment">
-        <div class="ui page grid">
-            <div class="column">
-                <h2 class="ui inverted header">shorten url</h2>
-                <form action="/shorten" method="post">
-                    <div class="ui labeled action input">
-                        <div class="ui label">http://</div>
-                        <input name="url" type="text" placeholder="www.example.com">
-                        <div class="ui teal button" type="submit">shorten >></div>
-                    </div>
-                </form>
-                {%if url %}{{url}}{%endif%}
-            </div>
+        <div class="ui container">
+            <h2 class="ui inverted header">shorten url</h2>
+            <form class="ui form" action="/" method="post">
+                {% csrf_token %}
+                <div class="inline field">
+                    <input name="url" type="text" placeholder="{%if url %}{{shorturl.url}}{%else%}www.example.com{%endif%}">
+                </div>
+                <input class="ui submit button" type="submit" value="shorten" />
+            </form>
+            <a href="{%if url %}{{url}}{%endif%}" target="_blank">{%if url %}{{url}}{%endif%}</a>
         </div>
     </div>
     <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
