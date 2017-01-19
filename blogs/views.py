@@ -66,7 +66,7 @@ def edit(request):
     article.title = request.POST.get("title")
     article.content = request.POST.get("content")
     article.save()
-    return redirect("/article/"+request.POST['pk'])
+    return redirect("/blogs/article/"+request.POST['pk'])
 
 def delete(request):
     article=Article.objects.get(pk=request.POST['pk'])
