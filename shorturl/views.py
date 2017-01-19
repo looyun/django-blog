@@ -1,9 +1,8 @@
 import string
 import random
 
-from django.contrib.auth import authenticate,login
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import render,redirect
+from django.shortcuts import render
 from django.views import View,generic
 from .models import ShortURL
 
@@ -44,15 +43,6 @@ def get_shorturl(request,**kwargs):
         shorturl.save()
         return render(request,'shorturl/index.html',{'url':'http://localhost:8000/'+shortcode,'shorturl':shorturl})
 
-def loginview(request):
-    username=request.POST['username']
-    password=request.POST['password']
-    user=authenticate(username=username,password=password)
-    if user is not None:
-        login(request,user)
-        return redirect('/blogs')
-    else:
-        return redirect('/login')
 
 
 

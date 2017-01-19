@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block title %}Blog{% endblock %} 
+{% block body %}
+<div class="ui text container ">
+    <form class="ui form segment" method="post" action="{% url 'blogs:register' %}">
+        {% csrf_token %}
+        <div class="field">
+            <label>用户名</label>
+            <input placeholder="Username" type="text" name="username">
+        </div>
+        <div class="field">
+            <label>邮箱</label>
+            <input placeholder="username@example.com" type="text" name="email">
+        </div>
+        <div class="field">
+            <label>密码</label>
+            <input type="password" name="password">
+        </div>
+        <input class="ui submit button" type="submit" value="注册">
+    </form>
+</div>
+{% endblock %}

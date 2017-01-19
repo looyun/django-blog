@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %}Blog{% endblock %} {% block body %}
+<div class="ui text container ">
+    <form class="ui form segment" method="post" action="{% url 'blogs:login' %}">
+        {% csrf_token %}
+        <div class="field">
+            <label>用户名</label>
+            <input placeholder="Username" type="text" name="username">
+        </div>
+        <div class="field">
+            <label>密码</label>
+            <input type="password" name="password">
+        </div>
+        <input class="ui submit button" type="submit" value="登陆">
+    </form>
+</div>
+{% endblock %}

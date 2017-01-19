@@ -11,4 +11,8 @@ urlpatterns = [
     url(r'^edit/$', views.edit, name='edit'),
     url(r'^delete/$', views.delete, name='delete'),
     url(r'^search', views.SearchView.as_view(), name='search'),
+
+
+    url(r'^login/$', views.login, name='login'),
+    url(r'^register/$', views.register, name='register'),
 ]

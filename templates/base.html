@@ -7,28 +7,38 @@
     </title>
     <link href="https://cdn.bootcss.com/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet">
     <style>
-
+    body {
+        overflow-y: scroll;
+    }
     </style>
 </head>
 
 <body>
-    <div class="ui menu">
-        <a class="{%if isHome%}active{%endif%} item" href="/blogs/">
-            <i class="home icon"></i> Home
-        </a>
-        <a class="{%if isCategory%}active{%endif%} item" href="/blogs/category">
-            <i class="content icon"></i> Category
-        </a>
-        <div class="right menu">
-            <div class="item">
-                <a class="ui button" href="/blogs/create">Create</a>
-            </div>
-            <div class="item">
-                <div class="ui transparent icon input">
-                    <form action="/blogs/search" method="get">
-                        <input type="text" placeholder="搜索..." name="keyword">
-                        <i class="search link icon"></i>
-                    </form>
+    <div class="ui borderless menu">
+        <div class="ui container">
+            <a class="{%if isHome%}active{%endif%} item" href="/blogs/">
+                <i class="home icon"></i> Home
+            </a>
+            <a class="{%if isCategory%}active{%endif%} item" href="/blogs/category">
+                <i class="content icon"></i> Category
+            </a>
+            <div class="right menu">
+                <div class="item">
+                    <a class="ui button" href="/blogs/create">Create</a>
+                </div>
+                <div class="item">
+                    <div class="ui transparent icon input">
+                        <form action="/blogs/search" method="get">
+                            <input type="text" placeholder="搜索..." name="keyword">
+                            <i class="search link icon"></i>
+                        </form>
+                    </div>
+                </div>
+                <div class="item">
+                    <a class="ui primary button" href="/blogs/register">注册</a>
+                </div>
+                <div class="item">
+                    <a class="ui button" href="/blogs/login">登录</a>
                 </div>
             </div>
         </div>
