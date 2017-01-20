@@ -147,8 +147,5 @@ def isAuthor(request,article):
         return True
     else:
         return False
-
-
-
-
+        
 
