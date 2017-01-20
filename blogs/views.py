@@ -17,7 +17,6 @@ from . import forms, models
 
 # class IndexView(generic.ListView):
 
-
 class IndexView(generic.ListView):
     template_name = 'blogs/index.html'
     context_object_name = 'articles'
@@ -43,7 +42,6 @@ class CategoryView(generic.ListView):
         kwargs['isLogin'] = isLogin(self.request)
         return super(CategoryView, self).get_context_data(**kwargs)
 
-
 class ArticleView(generic.DetailView):
     model = Article
     template_name = 'blogs/article.html'
@@ -51,8 +49,6 @@ class ArticleView(generic.DetailView):
     def get_context_data(self, **kwargs):
         kwargs['isLogin'] = isLogin(self.request)
         return super(ArticleView, self).get_context_data(**kwargs)
-
-
 
 class CreateView(generic.CreateView):
     template_name = "blogs/create.html"
@@ -72,7 +68,6 @@ class CreateView(generic.CreateView):
     def get_context_data(self, **kwargs):
         kwargs['isLogin'] = isLogin(self.request)
         return super(CreateView, self).get_context_data(**kwargs)
-
 
 class SearchView(generic.ListView):
     template_name = 'blogs/search.html'
@@ -110,7 +105,6 @@ def delete(request):
     else:
         return redirect("/blogs/login")
 
-
 def login(request):
     if request.method=='GET':
         return render(request,'blogs/login.html')
@@ -138,11 +132,9 @@ def register(request):
             login(request,user)
             return redirect('/blogs')
 
-
 def logout(request):
     auth.logout(request)
     return redirect('/blogs')
-
 
 def isLogin(request):
     if request.user.is_authenticated():
