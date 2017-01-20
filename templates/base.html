@@ -16,7 +16,7 @@
 <body>
     <div class="ui borderless menu">
         <div class="ui container">
-            <a class="{%if isHome%}active{%endif%} item" href="/blogs/">
+            <a class="{% if isHome %}active{% endif %} item" href="/blogs/">
                 <i class="home icon"></i> Home
             </a>
             <a class="{%if isCategory%}active{%endif%} item" href="/blogs/category">
@@ -34,12 +34,15 @@
                         </form>
                     </div>
                 </div>
+                {% if isLogin %}
                 <div class="item">
-                    <a class="ui primary button" href="/blogs/register">注册</a>
+                    <a class="ui button" href="/blogs/logout">注销</a>
                 </div>
+                {% else %}
                 <div class="item">
                     <a class="ui button" href="/blogs/login">登录</a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
