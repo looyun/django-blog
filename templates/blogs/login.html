@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block title %}Blog{% endblock %} {% block body %}
 <div class="ui text container ">
-    <form class="ui form segment" method="post" action="{% url 'blogs:login' %}">
+    <form id="login" class="ui form segment" method="post" action="{% url 'blogs:login' %}">
         {% csrf_token %}
         <div class="field">
             <label>用户名</label>
@@ -10,8 +10,15 @@
             <label>密码</label>
             <input type="password" name="password">
         </div>
-        <input class="ui submit button" type="submit" value="登陆">
-        <a class="ui submit button" href="/blogs/register">注册</a>
+        <div class="ui two column stackable center aligned grid segment">
+            <div class="column">
+                <div class="ui button" onclick="document.getElementById('login').submit();">登录</div>
+            </div>
+            <div class="ui vertical divider">or</div>
+            <div class="column">
+                <a class="teal ui button" href="{% url 'blogs:register' %}">注册</a>
+            </div>
+        </div>
     </form>
 </div>
 {% endblock %}

@@ -1,8 +1,17 @@
-{% extends 'base.html' %} {% block title %}Blog{% endblock %} 
-{% block body %}
+{% extends 'base.html' %} {% block title %}Blog{% endblock %} {% block body %}
 <div class="ui text container ">
+
+<div class="ui middle aligned animated list">
 {% for article in articles %}
-    <li><a href="{%url 'blogs:detail' article.id%}">{{article.title}}</a></li>
+  <div class="item">
+    <div class="right floated content">
+      <a  href="{% url 'blogs:user_article' article.author %}">{{article.author}}</a>
+    </div>
+    <a class="content" href="{%url 'blogs:detail' article.id%}">
+      {{article.title}}
+    </a>
+  </div>
     {%endfor%}
+</div>
 </div>
 {% endblock %}

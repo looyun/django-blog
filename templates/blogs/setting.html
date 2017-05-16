@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block title %}个人资料{% endblock %} {% block body %}
+<div class="ui main text container ">
+    <form class="ui form" action="{% url 'blogs:information_change' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    <input type="hidden" name="pk" value="{{user.id}}">
+    <h4 class="ui dividing header">个人信息</h4>
+    <div class="field">
+        <label>Name</label>
+        <div class="field">
+            <input type="text" name="username" value="{{user.username}}">
+        </div>
+    </div>
+    <div class="field">
+        <label>E-mail</label>
+        <div class="field">
+            <input type="text" name="email" value="{{user.email}}">
+        </div>
+    </div>
+    <div class="field">
+        <label>avatar</label>
+        <div class="field">
+            <img class="ui small image" src="/static/avatar/{% if request.user.myuser.avatar.url %}{{ request.user.myuser.avatar.url }}{% else %}user.png{% endif %}">
+        </div>
+        <div class="field">
+            <input type="file" name="avatar">
+        </div>
+    </div>
+    <input  class="ui submit button" type="submit" value="submit" />
+    </form>
+</div>
+{% endblock %}

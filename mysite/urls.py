@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^polls/', include('polls.urls', namespace="polls")),
-    url(r'^blogs/', include('blogs.urls', namespace="blogs")),
-    url(r'^', include('shorturl.urls', namespace="shorturl"))
+    # url(r'^blogs/', include('blogs.urls', namespace="blogs")),
+    url(r'^', include('blogs.urls', namespace="blogs")),
+    url(r'^shoirturl/', include('shorturl.urls', namespace="shorturl"))
 ]

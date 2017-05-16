@@ -5,54 +5,157 @@
     <title>
         {% block title %} Blog | A blog site {% endblock %}
     </title>
-    <link href="https://cdn.bootcss.com/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet">
+
+    {% block head %}  {% endblock %}
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="/static/default.css"/>
+    <link href="https://cdn.bootcss.com/semantic-ui/2.2.10/semantic.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/semantic-ui/2.2.10/semantic.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
     <style>
-    body {
-        overflow-y: scroll;
-    }
+        body {
+            overflow-y: scroll;
+        }
+        .ui.menu {
+            border: 0px;
+        }
+        /*.ui.text.container {
+            top:53;
+        }*/
+        body {
+            padding-top: 73px; 
+        }
+        pre {
+            background-color: #F3F3F3;
+        }
+        /*code {
+            white-space: normal;
+        }*/
+        .ui.sticky.fixed.top {
+            top: auto;
+            bottom: auto;
+        }
+        /*.ui.sticky {
+            top:30px;
+        }*/
+        .footer{
+            position:fixed;
+            bottom:0;
+        }
+        .ui.footer.segment {
+            margin: 5em 0em 0em;
+            padding: 5em 0em;
+        }
     </style>
 </head>
 
 <body>
-    <div class="ui borderless menu">
+    <div class="ui fixed borderless menu">
         <div class="ui container">
-            <a class="{% if isHome %}active{% endif %} item" href="/blogs/">
+            <a class="{% if isHome %}active{% endif %} item" href="{% url 'blogs:index' %}">
                 <i class="home icon"></i> Home
             </a>
-            <a class="{%if isCategory%}active{%endif%} item" href="/blogs/category">
+            <a class="{%if isCategory%}active{%endif%} item" href="{% url 'blogs:category' %}">
                 <i class="content icon"></i> Category
             </a>
             <div class="right menu">
                 <div class="item">
-                    <a class="ui button" href="/blogs/create">Create</a>
+                    <a class="ui button" href="{% url 'blogs:create' %}">Create</a>
                 </div>
                 <div class="item">
                     <div class="ui transparent icon input">
-                        <form action="/blogs/search" method="get">
+                        <form action="{% url 'blogs:search' %}" method="get">
                             <input type="text" placeholder="搜索..." name="keyword">
                             <i class="search link icon"></i>
                         </form>
                     </div>
                 </div>
                 {% if isLogin %}
-                <div class="item">
-                    <a class="ui button" href="/blogs/logout">注销</a>
+                <div class="ui pointing dropdown item"><img class="ui avatar image" src="/static/avatar/{% if request.user.myuser.avatar.url %}{{ request.user.myuser.avatar.url }}{% else %}user.png{% endif %}">&nbsp;&nbsp;{{ request.user }}
+                    <div class="menu">
+                        <a class="item" href="{% url 'blogs:my_article'  %}"><i class="user icon"></i>我的文章</a>
+                        <a class="item" href="{% url 'blogs:setting'  %}"><i class="setting icon"></i>设置</a>
+                        <a class="item" href="{% url 'blogs:logout'  %}"><i class="power icon"></i>注销</a>
+                    </div>
                 </div>
                 {% else %}
                 <div class="item">
-                    <a class="ui button" href="/blogs/login">登录</a>
+                    <a class="ui button" href="{% url 'blogs:login' %}">登录</a>
                 </div>
                 {% endif %}
             </div>
         </div>
     </div>
+    
     {% block body %} {% endblock %}
-    <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/semantic-ui/2.2.6/semantic.min.js">
+<div class="ui hidden divider"></div>
+    <div class="ui black inverted vertical footer segment">
+  <div class="ui center aligned container">
+    <div class="ui stackable inverted grid">
+      <div class="three wide column">
+        <h4 class="ui inverted header">Community</h4>
+        <div class="ui inverted link list">
+          <a class="item" href="https://www.transifex.com/organization/semantic-org/" target="_blank">Help Translate</a>
+          <a class="item" href="https://github.com/Semantic-Org/Semantic-UI/issues" target="_blank">Submit an Issue</a>
+          <a class="item" href="https://gitter.im/Semantic-Org/Semantic-UI" target="_blank">Join our Chat</a>
+          <a class="item" href="/cla.html" target="_blank">CLA</a>
+        </div>
+      </div>
+      <div class="three wide column">
+        <h4 class="ui inverted header">Network</h4>
+        <div class="ui inverted link list">
+          <a class="item" href="https://github.com/Semantic-Org/Semantic-UI" target="_blank">GitHub Repo</a>
+          <a class="item" href="http://forums.semantic-ui.com" target="_blank">User Forums</a>
+          <a class="item" href="http://1.semantic-ui.com">1.x Docs</a>
+          <a class="item" href="http://legacy.semantic-ui.com">0.x Docs</a>
+        </div>
+      </div>
+   <!--    <div class="three wide column">
+        <h4 class="ui inverted header">Learn</h4>
+        <div class="ui inverted link list">
+          <a href="#" class="disabled item">Example Layouts</a>
+          <a href="#" class="disabled item">The Project</a>
+          <a href="#" class="disabled item">Roadmap</a>
+          <a href="#" class="disabled item">About the Author</a>
+        </div>
+      </div> -->
+      <div class="seven wide right floated column">
+        <h4 class="ui inverted teal header">Help Preserve This Project</h4>
+        <p> Support for the continued development of Semantic UI comes directly from the community.</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="7ZAF2Q8DBZAQL">
+          <button type="submit" class="ui large teal button">Donate Today</button>
+        </form>
+      </div>
+    </div>
+    <div class="ui inverted section divider"></div>
+    <img src="/static/image.png" class="ui centered mini image">
+    <div class="ui horizontal inverted small divided link list">
+      <a class="item" href="http://semantic-ui.mit-license.org/" target="_blank">Free &amp; Open Source (MIT)</a>
+    </div>
+  </div>
+</div>
+    <script>
+        if (document.getElementById("mde")!=null)
+            var simplemde = new SimpleMDE({element:document.getElementById("mde"),spellChecker: false,});
     </script>
     <script>
-    // $('.ui.modal')
-    //     .modal();
+    $('.ui.dropdown.item')
+        .dropdown({
+            // 你可以使用任何过渡
+            transition: 'drop'
+    });
+
+    // $('.ui.floating.dropdown.button')
+    //     .dropdown({
+    //         // 你可以使用任何过渡
+    //         transition: 'drop'
+    // });
     </script>
 </body>
 
