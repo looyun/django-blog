@@ -21,7 +21,7 @@
     <div class="ui center aligned inverted vertical segment">
         <div class="ui container">
             <h2 class="ui inverted header">shorten url</h2>
-            <form class="ui form" action="/" method="post">
+            <form class="ui form" action="" method="post">
                 {% csrf_token %}
                 <div class="inline field">
                     <input name="url" type="text" placeholder="{%if url %}{{shorturl.url}}{%else%}www.example.com{%endif%}">

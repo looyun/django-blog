@@ -33,15 +33,17 @@ def get_shorturl(request,**kwargs):
     if request.method=='GET':
         return render(request,'shorturl/index.html')
     url=request.POST['url']
+    if url =="":
+        return render(request,'shorturl/index.html')
     if ShortURL.objects.filter(url=url).exists():
         shorturl=ShortURL.objects.get(url=url)
-        return render(request,'shorturl/index.html',{'url':'http://localhost:8000/'+shorturl.shortcode,'shorturl':shorturl})
+        return render(request,'shorturl/index.html',{'url':'/shorturl/'+shorturl.shortcode,'shorturl':shorturl})
     else:
         shortcode=create_shortcode(url)
         shorturl=ShortURL(url=url)
         shorturl.shortcode=shortcode
         shorturl.save()
-        return render(request,'shorturl/index.html',{'url':'http://localhost:8000/'+shortcode,'shorturl':shorturl})
+        return render(request,'shorturl/index.html',{'url':'/shorturl/'+shortcode,'shorturl':shorturl})
 
 
 

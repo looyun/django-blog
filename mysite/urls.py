@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'^polls/', include('polls.urls', namespace="polls")),
     # url(r'^blogs/', include('blogs.urls', namespace="blogs")),
     url(r'^', include('blogs.urls', namespace="blogs")),
-    url(r'^shoirturl/', include('shorturl.urls', namespace="shorturl"))
+    url(r'^shorturl/', include('shorturl.urls', namespace="shorturl"))
 ]
